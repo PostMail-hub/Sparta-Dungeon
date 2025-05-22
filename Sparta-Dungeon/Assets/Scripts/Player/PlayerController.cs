@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public bool canLook = true;
+
+    public Action inventory;
 
     private Rigidbody rb;
 
@@ -51,7 +54,7 @@ public class PlayerController : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
     }
 
-    public void OnMove(InputAction.CallbackContext context) // 키 입력 시 알맞게 움직이기
+    public void OnMoveInput(InputAction.CallbackContext context) // 키 입력 시 알맞게 움직이기
     {
         if (context.phase == InputActionPhase.Performed)
         {
@@ -63,12 +66,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnJump(InputAction.CallbackContext context) // 키 입력 시 조건에 맞다면 점프
+    public void OnJumpInput(InputAction.CallbackContext context) // 키 입력 시 조건에 맞다면 점프
     {
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
+    }
+
+    public void OnInventoryInput(InputAction.CallbackContext callbackContext) // 키 입력 시 인벤토리 열기
+    {
+        if (callbackContext.phase == InputActionPhase.Started)
+        {
+            inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
     }
 
     private void Move() // 캐릭터를 움직이는 함수
