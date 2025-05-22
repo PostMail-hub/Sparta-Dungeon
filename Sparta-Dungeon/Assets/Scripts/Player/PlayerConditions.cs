@@ -1,7 +1,13 @@
 using System;
 using UnityEngine;
 
-public class PlayerCondition : MonoBehaviour
+public interface IDamagable
+{
+    void TakePhysicalDamage(int damage);
+}
+
+
+public class PlayerConditions : MonoBehaviour, IDamagable
 {
     public UICondition uiCondition;
 
@@ -9,7 +15,7 @@ public class PlayerCondition : MonoBehaviour
 
     public event Action onTakeDamage;
 
-    private void Update()
+    void Update()
     {
         if (health.curValue <= 0f)
         {
@@ -25,5 +31,11 @@ public class PlayerCondition : MonoBehaviour
     public void Die()
     {
         Time.timeScale = 0;
+    }
+
+    public void TakePhysicalDamage(int damage)
+    {
+        health.Subtract(damage);
+        onTakeDamage?.Invoke();
     }
 }
