@@ -92,12 +92,10 @@ public class PlayerController : MonoBehaviour
 
     private void Move() // 캐릭터를 움직이는 함수
     {
+        Vector3 moveDir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
+        Vector3 velocity = new Vector3(moveDir.x * moveSpeed, rb.velocity.y, moveDir.z * moveSpeed);
 
-        Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= moveSpeed; 
-        dir.y = rb.velocity.y;
-
-        rb.velocity = dir;
+        rb.velocity = velocity;
     }
 
     void CameraLook() // 카메라를 움직이는 함수
@@ -135,5 +133,11 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
+    }
+
+    public void SuperJump(float amout) // 점프대에 닿았을 때 호출할 슈퍼 점프 함수
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // 기존 수직 속도 제거
+        rb.AddForce(Vector3.up * amout, ForceMode.Impulse);
     }
 }

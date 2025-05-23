@@ -10,8 +10,6 @@ public class UIBuffBar : MonoBehaviour
 
     public void StartBuff(float duration)
     {
-        Debug.Log("BuffBar Started with duration: " + duration);
-
         totalDuration = duration;
         timeLeft = duration;
         isRunning = true;
