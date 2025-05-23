@@ -17,7 +17,7 @@ MonoBehaviour:
     \uB3C5\uBC84\uC12F\uC774\uB2E4."
   type: 2
   consumables:
-  - type: 1
+  - type: 0
     value: -50
   buffData:
     duration: 0

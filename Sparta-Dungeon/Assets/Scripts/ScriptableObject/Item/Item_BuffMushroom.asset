@@ -17,7 +17,7 @@ MonoBehaviour:
     \uAC83 \uAC19\uB2E4."
   type: 0
   consumables:
-  - type: 2
+  - type: 1
     value: 0
   buffData:
     duration: 10
