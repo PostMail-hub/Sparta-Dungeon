@@ -16,10 +16,10 @@ MonoBehaviour:
   description: "\uBA39\uC73C\uBA74 \uC548\uB420 \uAC83 \uAC19\uC774 \uC0DD\uAE34
     \uB3C5\uBC84\uC12F\uC774\uB2E4."
   type: 2
-  icon: {fileID: 21300000, guid: ad37d1113cb85cb4383b4238645ab0ab, type: 3}
-  dropPrefab: {fileID: 2999435842726371594, guid: 2b86baf6b367cec4b8f4bd84803acaa9, type: 3}
-  canStack: 1
-  maxStackAmount: 32
   consumables:
   - type: 1
     value: -50
+  buffData:
+    duration: 0
+    speedMultiplier: 0
+    jumpMultiplier: 0

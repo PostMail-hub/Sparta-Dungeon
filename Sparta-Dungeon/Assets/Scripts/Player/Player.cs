@@ -5,11 +5,9 @@ public class Player : MonoBehaviour
 {
     public PlayerController controller;
     public PlayerConditions condition;
+    public PlayerBuffController buffController;
 
     public ItemData itemData;
-    public Action addItem;
-
-    public Transform dropPosition;
 
     private void Awake()
     {

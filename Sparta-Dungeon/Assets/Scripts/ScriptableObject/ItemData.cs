@@ -10,7 +10,8 @@ public enum ItemType
 public enum ConsumableType
 {
     Hunger,
-    Health
+    Health,
+    Buff
 }
 
 [System.Serializable]
@@ -20,6 +21,14 @@ public class ItemDataConsumable
     public float value;
 }
 
+[System.Serializable]
+public class ItemDataBuff
+{
+    public float duration;
+    public float speedMultiplier;
+    public float jumpMultiplier;
+}
+
 [CreateAssetMenu(fileName = "Item", menuName = "New Item")]
 public class ItemData : ScriptableObject
 {
@@ -27,13 +36,10 @@ public class ItemData : ScriptableObject
     public string displayName;
     public string description;
     public ItemType type;
-    public Sprite icon;
-    public GameObject dropPrefab;
-
-    [Header("스택")]
-    public bool canStack;
-    public int maxStackAmount;
 
     [Header("소모품")]
     public ItemDataConsumable[] consumables;
+
+    [Header("버프")]
+    public ItemDataBuff buffData = new ItemDataBuff();
 }
